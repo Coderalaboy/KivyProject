@@ -1,15 +1,18 @@
 
 name: Upload Folder to GitHub
-
 on: [push]
-
 jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Add folder to repository
+        run: |
+          git add /path/to/folder
+          git commit -m "Add folder"
       - name: Upload folder
         uses: actions/upload-artifact@v2
         with:
-          name:
+          name: MyFolder
+          path: /path/to/folder
